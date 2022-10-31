@@ -1,0 +1,49 @@
+name: update-bing-walpaper
+
+on:
+  push:
+    branches:
+     - master
+  schedule:
+   - cron: "0 0/1 * * *"
+
+env:
+  STORAGE_TYPE: mongodb
+  # mongodb配置
+  MONGODB_URI: ${{ secrets.MONGODB_URI }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Checkout
+       uses: actions/checkout@master
+    
+     - name: Set up Python
+       uses: actions/setup-python@v1
+       with:
+        python-version: 3.8
+
+     - name: Install Requirements
+       working-directory: ./bing_wallpaper_api
+       run: |
+         pip install -r requirements.txt
+ 
+     - name: mongodb Update bing
+       if: ${{ env.STORAGE_TYPE == 'mongodb' }}  
+       env:
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}
+       working-directory: ./
+       run: |
+         python bing_wallpaper_api/run.py
+         
+     - name: Commit json Files
+       run: |
+         sh commit.sh
+
+     - name: Push changes
+       uses:  ad-m/github-push-action@master
+       with:
+         github_token: ${{ secrets.MY_GIT_TOKEN }}
+         branch: master
+     
