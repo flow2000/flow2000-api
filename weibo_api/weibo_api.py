@@ -21,14 +21,15 @@ def get_topic():
             '电影': '影',
             '剧集': '剧',
             '综艺': '综',
-            '音乐': '音'
+            '音乐': '音',
+            '盛典': '盛',
         }
         for i in range(0,len(data_json)):
             hot = ''
             if 'is_ad' in data_json[i]:
                 continue; 
             if 'flag_desc' in data_json[i]:
-                hot = jyzy[data_json[i]['flag_desc']]
+                hot = jyzy.get(data_json[i]['flag_desc'],'')
             if 'is_boom' in data_json[i]:
                 hot = '爆'
             if 'is_hot' in data_json[i]:
@@ -38,9 +39,9 @@ def get_topic():
             if 'is_new' in data_json[i]:
                 hot = '新'
             dic = {
-                'title': data_json[i]['note'],
-                'url': 'https://s.weibo.com/weibo?q=%23' + data_json[i]['word'] + '%23',
-                'num': data_json[i]['num'],
+                'title': data_json[i].get('note',''),
+                'url': 'https://s.weibo.com/weibo?q=%23' + data_json[i].get('word','') + '%23',
+                'num': data_json[i].get('num',''),
                 'hot': hot
             }
             dataList.append(dic)
