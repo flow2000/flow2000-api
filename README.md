@@ -1,25 +1,15 @@
-## 必应图片API
+## 自建API
 
 ### 简介
 
-​		必应搜索每日都会有一张精美的图片，我们可以
+​		自用API，
 
-​		1、保存下来搭建api用于图片展示
-
-​		2、放在博客当博客背景
-
-​		于是便有了本项目的诞生。本项目借助python实现：
-
-​		1、服务端获取2018-至今的壁纸接口数据，并存储到Mongodb
-
-​		2、提供json接口和图片接口
-
-### API接口说明
+### 壁纸API
 
 #### 获取今日壁纸
 
 ```shell
-https://api.bing.shinie.top/today?w=1920&h=1080&mkt=zh-CN
+https://api.panghai.top/today?w=1920&h=1080&mkt=zh-CN
 ```
 
 | 参数名 |   类型   | 是否必要 |        备注        |
@@ -32,7 +22,7 @@ https://api.bing.shinie.top/today?w=1920&h=1080&mkt=zh-CN
 #### 获取随机壁纸
 
 ```shell
-https://api.bing.shinie.top/random?w=1920&h=1080&mkt=zh-CN
+https://api.panghai.top/random?w=1920&h=1080&mkt=zh-CN
 ```
 
 | 参数名 |   类型   | 是否必要 |        备注        |
@@ -45,7 +35,7 @@ https://api.bing.shinie.top/random?w=1920&h=1080&mkt=zh-CN
 #### 获取壁纸JSON数据
 
 ```shell
-https://api.bing.shinie.top/all?page=1&order=asc&limit=10&w=1920&h=1080&mkt=zh-CN
+https://api.panghai.top/all?page=1&order=asc&limit=10&w=1920&h=1080&mkt=zh-CN
 ```
 
 | 参数名 |   类型   | 是否必要 |              备注               |
@@ -92,12 +82,71 @@ locations: [
 #### 获取壁纸数量
 
 ```shell
-https://api.bing.shinie.top/total?mkt=zh-CN
+https://api.panghai.top/total?mkt=zh-CN
 ```
 
 | 参数名 |   类型   | 是否必要 |      备注       |
 | :----: | :------: | :------: | :-------------: |
 |  mkt   | `String` |    否    | 地区，默认zh-CN |
+
+### 微博热搜API
+
+#### 获取热搜json数据
+
+```shell
+https://api.panghai.top/weibo
+```
+
+| 参数名 | 类型 | 是否必要 |  备注   |
+| :----: | :--: | :------: | :-----: |
+|   无   |  无  |    无    | 无参API |
+
+### B站热搜API
+
+#### 获取热搜json数据
+
+```shell
+https://api.panghai.top/bili
+```
+
+| 参数名 | 类型 | 是否必要 |  备注   |
+| :----: | :--: | :------: | :-----: |
+|   无   |  无  |    无    | 无参API |
+
+### 60秒新闻API
+
+#### 获取json数据
+
+```shell
+https://api.panghai.top/60s
+```
+
+| 参数名 | 类型  | 是否必要 |                             备注                             |
+| :----: | :---: | :------: | :----------------------------------------------------------: |
+| offset | `int` |    否    | 偏移量（可选参数：0,1,2,3）默认0表示今天，1表示昨天，2表示前天，3表示大前天 |
+
+### OCRAPI
+
+#### 在线识别
+
+```shell
+https://api.panghai.top/ocr
+```
+
+| 参数名 |   类型   | 是否必要 |                             备注                             |
+| :----: | :------: | :------: | :----------------------------------------------------------: |
+|  url   | `String` |    是    | 图片地址，要求大小不可以超过512KB，例如：[示例图片](http://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png) |
+
+#### 在线识别
+
+```shell
+https://api.panghai.top/ocr/file
+```
+
+|     参数名     |   类型   | 是否必要 |                             备注                             |
+| :------------: | :------: | :------: | :----------------------------------------------------------: |
+|      file      |  `file`  |    是    | 图片文件，要求大小不可以超过512KB，例如：[示例图片](http://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png) |
+| content-length | `String` |    否    |       文件字节大小，随便填，但不能超过512*1024=524288        |
 
 ### 部署
 
@@ -112,15 +161,3 @@ https://api.bing.shinie.top/total?mkt=zh-CN
 4、进入 Settings - Environment Variables，添加环境变量 `MONGODB_URI`，值为第 3 步的数据库连接字符串
 
 5、进入 Overview，点击 Domains 下方的链接，添加一个子域名，并在域名解析添加一个`CNAME`解析：`cname.vercel-dns.com.`，等待刷新完成即可获得一个`https`的接口
-
-### 未来计划
-
-- [x] 补充前端展示必应壁纸 [必应壁纸 | 每天都有不一样的心情](https://bimg.cc/)
-
-- [x] 使用本地部署，加快api速度 https://api.bimg.cc/
-
-### 鸣谢
-
-感谢[hexo-circle-of-friends](https://github.com/Rock-Candy-Tea/hexo-circle-of-friends)的自动化思路
-
-感谢[Bing-Wallpaper-Action](https://github.com/zkeq/Bing-Wallpaper-Action)的分地区思路以及仓库的初始化数据
