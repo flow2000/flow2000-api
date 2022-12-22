@@ -164,6 +164,14 @@ https://api.panghai.top/ocr/file
 
 5、进入 Overview，点击 Domains 下方的链接，添加一个子域名，并在域名解析添加一个`CNAME`解析：`cname.vercel-dns.com.`，等待刷新完成即可获得一个`https`的接口
 
+注意：vercel部署会出现
+
+```markdown
+Error: The Serverless Function "api/FlowResponse" is 182.48mb which exceeds the maximum size limit of 50mb. Learn More: https://vercel.link/serverless-function-size
+```
+
+表示pip依赖包太大，没办法只能使用docker部署
+
 #### docker部署
 
 ```shell
