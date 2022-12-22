@@ -14,7 +14,7 @@ DEPLOY_TYPE = "github" # 可选 github docker
 ##############################项目固定配置，请勿修改################################
 
 # 版本号
-VERSION="3.2.1"
+VERSION="1.0.0"
 
 # 必应接口
 BINGAPI='https://bing.com/HPImageArchive.aspx?n=1&format=js&idx=0'
