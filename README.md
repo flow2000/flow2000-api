@@ -150,14 +150,23 @@ https://api.panghai.top/ocr/file
 
 ### 部署
 
+#### vercel部署
+
 1、在 [MongoDB](https://www.mongodb.com/cloud/atlas/register) 申请 MongoDB 帐号，具体可查看我的博客教程：[如何申请一个永久免费的 Mongodb 数据库 - 详细版](https://blog.panghai.top/posts/b267/)
 
 2、在[Vercel](https://vercel.com/signup)申请 Vercel帐号
 
 3、创建数据库用户名和密码，在IPAccess List添加`0.0.0.0`（代表允许所有 IP 地址的连接），在 Clusters 页面点击 CONNECT，选择第二个：Connect your application，并记录数据库连接字符串，请将连接字符串中的 `user`修改为数据库用户，`<password>` 修改为数据库密码
 
-3、点击部署<a href="https://vercel.com/import/project?template=https://github.com/flow2000/bing-wallpaper-api/tree/master" target="_blank" rel="noopener noreferrer"><img src="https://vercel.com/button" alt="vercel deploy"></a>
+3、点击部署<a href="https://vercel.com/import/project?template=https://github.com/flow2000/flow2000-api/tree/master" target="_blank" rel="noopener noreferrer"><img src="https://vercel.com/button" alt="vercel deploy"></a>
 
 4、进入 Settings - Environment Variables，添加环境变量 `MONGODB_URI`，值为第 3 步的数据库连接字符串
 
 5、进入 Overview，点击 Domains 下方的链接，添加一个子域名，并在域名解析添加一个`CNAME`解析：`cname.vercel-dns.com.`，等待刷新完成即可获得一个`https`的接口
+
+#### docker部署
+
+```shell
+docker run -itd --name=flow2000-api --restart=always -p 9134:8888 --env MONGODB_URI=xxx flow2000/flow2000-api
+```
+
