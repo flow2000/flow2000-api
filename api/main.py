@@ -24,6 +24,8 @@ from api.mongodbapi import *
 from weibo_api import weibo_api
 from sixty_api import sixty_api
 from api import FlowResponse
+import asyncio
+from aiocache import cached
 
 
 app = FastAPI()
@@ -40,6 +42,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@cached(ttl=3600)
 @app.get("/",tags=["INFO"], summary="获取部署成功信息")
 async def index():
     '''
@@ -87,6 +90,7 @@ async def favicon():
     '''
     return StreamingResponse(open('favicon.ico', mode="rb"), media_type="image/jpg")
 
+@cached(ttl=3600)
 @app.get("/today",tags=["壁纸API"], summary="获取今日壁纸")
 async def latest(w: str = "1920", h: str = "1080", uhd: bool = False, mkt: str = "zh-CN"):
     '''
@@ -98,6 +102,7 @@ async def latest(w: str = "1920", h: str = "1080", uhd: bool = False, mkt: str =
     '''
     return latest_one(w,h,uhd,mkt)
 
+@cached(ttl=3600)
 @app.get("/random",tags=["壁纸API"], summary="获取随机壁纸")
 async def random(w: str = "1920", h: str = "1080", uhd: bool = False, mkt: str = "zh-CN"):
     '''
@@ -109,6 +114,7 @@ async def random(w: str = "1920", h: str = "1080", uhd: bool = False, mkt: str =
     '''
     return random_one(w,h,uhd,mkt)
 
+@cached(ttl=3600)
 @app.get("/all",tags=["壁纸API"], summary="获取分页数据")
 async def all(page: int = 1, limit: int = 10, order: str="desc", w: int = 1920, h: int = 1080, uhd: bool = False, mkt: str = "zh-CN"):
     '''
@@ -124,6 +130,7 @@ async def all(page: int = 1, limit: int = 10, order: str="desc", w: int = 1920, 
         return FlowResponse.error('请求参数错误')
     return query_all(page,limit,order,w,h,uhd,mkt)
 
+@cached(ttl=3600)
 @app.get("/total",tags=["壁纸API"], summary="获取数据总数")
 async def total(mkt: str = "zh-CN"):
     '''
@@ -134,6 +141,7 @@ async def total(mkt: str = "zh-CN"):
         return FlowResponse.error('请求参数错误')
     return query_total_num(mkt)
 
+@cached(ttl=3600)
 @app.get("/weibo",tags=["微博热搜API"], summary="获取热搜json数据")
 async def weibo():
     '''
@@ -145,7 +153,7 @@ async def weibo():
     else:
         return FlowResponse.error('系统发生错误')
 
-
+@cached(ttl=3600)
 @app.get("/60s",tags=["60秒新闻API"], summary="获取今日新闻json数据")
 async def sixty(offset: int = 0):
     '''

@@ -6,3 +6,4 @@ aiohttp==3.8.1
 colorama
 beautifulsoup4==4.10.0
 pymongo[srv]
+aiocache[memcached]
