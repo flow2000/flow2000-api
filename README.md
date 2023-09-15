@@ -9,7 +9,7 @@
 #### 获取今日壁纸
 
 ```shell
-https://api.panghai.top/today?w=1920&h=1080&mkt=zh-CN
+https://api.aqcoder.cn/today?w=1920&h=1080&mkt=zh-CN
 ```
 
 | 参数名 |   类型   | 是否必要 |        备注        |
@@ -22,7 +22,7 @@ https://api.panghai.top/today?w=1920&h=1080&mkt=zh-CN
 #### 获取随机壁纸
 
 ```shell
-https://api.panghai.top/random?w=1920&h=1080&mkt=zh-CN
+https://api.aqcoder.cn/random?w=1920&h=1080&mkt=zh-CN
 ```
 
 | 参数名 |   类型   | 是否必要 |        备注        |
@@ -35,7 +35,7 @@ https://api.panghai.top/random?w=1920&h=1080&mkt=zh-CN
 #### 获取壁纸JSON数据
 
 ```shell
-https://api.panghai.top/all?page=1&order=asc&limit=10&w=1920&h=1080&mkt=zh-CN
+https://api.aqcoder.cn/all?page=1&order=asc&limit=10&w=1920&h=1080&mkt=zh-CN
 ```
 
 | 参数名 |   类型   | 是否必要 |              备注               |
@@ -82,7 +82,7 @@ locations: [
 #### 获取壁纸数量
 
 ```shell
-https://api.panghai.top/total?mkt=zh-CN
+https://api.aqcoder.cn/total?mkt=zh-CN
 ```
 
 | 参数名 |   类型   | 是否必要 |      备注       |
@@ -94,7 +94,7 @@ https://api.panghai.top/total?mkt=zh-CN
 #### 获取热搜json数据
 
 ```shell
-https://api.panghai.top/weibo
+https://api.aqcoder.cn/weibo
 ```
 
 | 参数名 | 类型 | 是否必要 |  备注   |
@@ -103,56 +103,23 @@ https://api.panghai.top/weibo
 
 ### B站热搜API
 
-#### 获取热搜json数据
-
-```shell
-https://api.panghai.top/bili
-```
-
-| 参数名 | 类型 | 是否必要 |  备注   |
-| :----: | :--: | :------: | :-----: |
-|   无   |  无  |    无    | 无参API |
-
 ### 60秒新闻API
 
 #### 获取json数据
 
 ```shell
-https://api.panghai.top/60s
+https://api.aqcoder.cn/60s
 ```
 
 | 参数名 | 类型  | 是否必要 |                             备注                             |
 | :----: | :---: | :------: | :----------------------------------------------------------: |
 | offset | `int` |    否    | 偏移量（可选参数：0,1,2,3）默认0表示今天，1表示昨天，2表示前天，3表示大前天 |
 
-### OCRAPI
-
-#### 在线识别
-
-```shell
-https://api.panghai.top/ocr
-```
-
-| 参数名 |   类型   | 是否必要 |                             备注                             |
-| :----: | :------: | :------: | :----------------------------------------------------------: |
-|  url   | `String` |    是    | 图片地址，要求大小不可以超过512KB，例如：[示例图片](http://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png) |
-
-#### 在线识别
-
-```shell
-https://api.panghai.top/ocr/file
-```
-
-|     参数名     |   类型   | 是否必要 |                             备注                             |
-| :------------: | :------: | :------: | :----------------------------------------------------------: |
-|      file      |  `file`  |    是    | 图片文件，要求大小不可以超过512KB，例如：[示例图片](http://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png) |
-| content-length | `String` |    否    |       文件字节大小，随便填，但不能超过512*1024=524288        |
-
 ### 部署
 
 #### vercel部署
 
-1、在 [MongoDB](https://www.mongodb.com/cloud/atlas/register) 申请 MongoDB 帐号，具体可查看我的博客教程：[如何申请一个永久免费的 Mongodb 数据库 - 详细版](https://blog.panghai.top/posts/b267/)
+1、在 [MongoDB](https://www.mongodb.com/cloud/atlas/register) 申请 MongoDB 帐号，具体可查看我的博客教程：[如何申请一个永久免费的 Mongodb 数据库 - 详细版](https://blog.aqcoder.cn/posts/b267/)
 
 2、在[Vercel](https://vercel.com/signup)申请 Vercel帐号
 

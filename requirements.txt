@@ -4,5 +4,4 @@ requests
 pymongo==4.0.1
 aiohttp==3.8.1
 colorama
-ddddocr==1.4.7
 beautifulsoup4==4.10.0

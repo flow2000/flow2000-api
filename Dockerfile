@@ -1,6 +1,6 @@
 FROM python:3.8.5
 
-RUN pip install fastapi uvicorn aiofiles fastapi-async-sqlalchemy python-multipart requests pymongo aiohttp colorama ddddocr beautifulsoup4
+RUN pip install fastapi uvicorn aiofiles fastapi-async-sqlalchemy python-multipart requests pymongo aiohttp colorama beautifulsoup4
 
 EXPOSE 8888
 
